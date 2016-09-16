@@ -9,9 +9,18 @@ get '/users/new' do
 end
 
 post '/users' do
-  #submit users creation form
-  #if there was a problem, erb w/ errors
-  #otherwise, redirect
+  if params[:password] != params[:confirm_pw]
+    @errors = ["Passwords must match"]
+    return erb :'/users/new'
+  end
+  user = User.new(params[:user])
+  user.password = params[:password]
+  if user.save
+    redirect "/users/#{user.id}"
+  else
+    @errors = user.errors.full_messages
+    erb :'/users/new'
+  end
 end
 
 get '/users/:id' do
