@@ -5,11 +5,13 @@ end
 
 get '/users/new' do
   #form for creating account
+  erb :'/users/new'
 end
 
 post '/users' do
   #submit users creation form
-  #redirect
+  #if there was a problem, erb w/ errors
+  #otherwise, redirect
 end
 
 get '/users/:id' do
@@ -20,11 +22,11 @@ get '/users/:id/edit' do
   #form to edit your profile when logged in
 end
 
-put '/users/:id'
+put '/users/:id' do
   #edit your profile
   #redirect
 end
 
-delete '/users/:id'
+delete '/users/:id' do
   #delete your own profile when logged in
 end
