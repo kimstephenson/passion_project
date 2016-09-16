@@ -24,7 +24,7 @@ post '/users' do
 end
 
 get '/users/:id' do
-  #specific user's profile page
+  erb :'/users/show'
 end
 
 get '/users/:id/edit' do

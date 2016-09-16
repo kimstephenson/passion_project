@@ -1,5 +1,5 @@
 get '/sessions/new' do
-  #display login form
+  erb :'/sessions/new'
 end
 
 post '/sessions' do
