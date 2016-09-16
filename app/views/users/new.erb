@@ -1,0 +1,18 @@
+<h3>Create a free account to connect with musicians</h3>
+
+<form action='/users' method='post'>
+  First Name:<input type='text' name='user[first_name]'>
+  Last Name:<input type='text' name='user[last_name]'>
+  Email:<input type='text' name='user[email]'>
+  Password:<input type='password' name='password'>
+  Confirm Password:<input type='password' name='confirm_pw'>
+  <input type='submit' value='Submit'>
+</form>
+
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
