@@ -3,12 +3,13 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  #log in & authenticate user
-  #if there was a problem, erb w/ errors
-  #else, redirect to profile page
+  user = User.authenticate(params[:email], params[:password])
+  redirect '/' unless user
+  session["user"] = user.id
+  redirect "/users/#{user.id}"
 end
 
 delete '/sessions' do
-  #log out
-  #redirect home
+  session["user"] = nil
+  redirect '/'
 end
