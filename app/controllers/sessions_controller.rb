@@ -3,7 +3,7 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  #log in
+  #log in & authenticate user
   #if there was a problem, erb w/ errors
   #else, redirect to profile page
 end
