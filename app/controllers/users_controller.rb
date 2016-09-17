@@ -4,7 +4,6 @@ get '/users' do
 end
 
 get '/users/new' do
-  #form for creating account
   erb :'/users/new'
 end
 

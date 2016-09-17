@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
+  def self.authenticate(email, password)
+    user == self.find_by(email: email)
+    return user if user && user.password_hash == password
+    nil
+  end
 
   private
   def email_format
