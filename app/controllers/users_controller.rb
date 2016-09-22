@@ -1,6 +1,9 @@
 get '/users' do
-  #display list of all users(maybe with specific parameters?)
-  #add routes for users of specific location, instrument, or genre
+  data = open("https://www.zipcodeapi.com/rest/KCU6dzg4gdRJy4xhUBqypOe3w2nAhTX2wS9KrpOIDGscKZtFBUd1Is4fvrPNlNPS/radius.json/#{current_user.zip_code}/#{params[:distance]}/mile").read
+  #parse zipcodes
+  #display how far away user is?
+  #get instrument & genre params
+  erb :'/users/index'
 end
 
 get '/users/new' do
