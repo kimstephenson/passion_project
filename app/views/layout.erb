@@ -18,6 +18,18 @@
   <title></title>
 </head>
 <body>
+  <a href='/'>Home</a>
+<% unless current_user %>
+  <a href='/users/new'>Sign Up</a>
+  <a href='/sessions/new'>Login</a>
+<% end %>
+<% if current_user %>
+  <a href="/users/<%= current_user.id %>">Hi, <%= current_user.first_name %></a>
+  <form action='/sessions' method='post'>
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Log Out'>
+  </form>
+<% end %>
   <%= yield %>
 </body>
 </html>
