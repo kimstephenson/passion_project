@@ -6,7 +6,6 @@ get '/users' do
     users_in_range += User.where(zip_code: hash["zip_code"])
   end
   p users_in_range
-  #parse zipcodes
   #display how far away user is?
   #get instrument & genre params
   erb :'/users/index'
