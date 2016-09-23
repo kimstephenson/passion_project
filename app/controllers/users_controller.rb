@@ -1,6 +1,11 @@
 get '/users' do
-  data = open("https://www.zipcodeapi.com/rest/KCU6dzg4gdRJy4xhUBqypOe3w2nAhTX2wS9KrpOIDGscKZtFBUd1Is4fvrPNlNPS/radius.json/#{current_user.zip_code}/#{params[:distance]}/mile").read
-  #parse zipcodes
+  data = JSON.parse(open("https://www.zipcodeapi.com/rest/KCU6dzg4gdRJy4xhUBqypOe3w2nAhTX2wS9KrpOIDGscKZtFBUd1Is4fvrPNlNPS/radius.json/#{current_user.zip_code}/#{params[:distance]}/mile").read)
+  zip_code_info = data["zip_codes"]
+  users_in_range = []
+  zip_code_info.each do |hash|
+    users_in_range += User.where(zip_code: hash["zip_code"])
+  end
+  p users_in_range
   #display how far away user is?
   #get instrument & genre params
   erb :'/users/index'
@@ -27,6 +32,7 @@ post '/users' do
 end
 
 get '/users/:id' do
+  @user = User.find(params[:id])
   erb :'/users/show'
 end
 
