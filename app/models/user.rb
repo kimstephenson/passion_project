@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :genres, through: :genres_users
   has_many :instruments, through: :instruments_users
 
-  validates :email, uniqueness: true
+  validates :first_name, :last_name, :zip_code, presence: true
+  validates :email, presence: true, uniqueness: true
   validate :email_format
 
   def password

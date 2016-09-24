@@ -6,8 +6,16 @@
   text-decoration: none;
 }
 
+#logout:focus {
+  outline: 0;
+}
+
 .navbar {
   margin-bottom: 0;
+}
+
+#bandwagon-header {
+  font-family: "Bungee Shade";
 }
 
 .bg {
