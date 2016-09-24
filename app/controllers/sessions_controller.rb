@@ -5,11 +5,11 @@ end
 post '/sessions' do
   user = User.authenticate(params[:email], params[:password])
   redirect '/' unless user
-  session["user"] = user.id
+  session[:user_id] = user.id
   redirect "/users/#{user.id}"
 end
 
 delete '/sessions' do
-  session["user"] = nil
+  session[:user_id] = nil
   redirect '/'
 end
