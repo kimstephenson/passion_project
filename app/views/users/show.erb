@@ -1,3 +1,6 @@
+<h2><%= @user.first_name %> <%= @user.last_name%></h2>
+<h3><%= @user.city %>, <%= @user.state %></h3>
+
 <form action='/users' method='get'>
   Search for musicians within <input type='text' name='distance'> miles of me
   <input type='submit'>
