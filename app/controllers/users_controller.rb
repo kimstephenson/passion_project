@@ -1,5 +1,5 @@
 get '/users' do
-  data = JSON.parse(open("https://www.zipcodeapi.com/rest/KCU6dzg4gdRJy4xhUBqypOe3w2nAhTX2wS9KrpOIDGscKZtFBUd1Is4fvrPNlNPS/radius.json/#{current_user.zip_code}/#{params[:distance]}/mile").read)
+  data = JSON.parse(open("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/radius.json/#{current_user.zip_code}/#{params[:distance]}/mile").read)
   zip_code_info = data["zip_codes"]
   users_in_range = []
   zip_code_info.each do |hash|
@@ -21,9 +21,12 @@ post '/users' do
     return erb :'/users/new'
   end
   user = User.new(params[:user])
+  zipdata = zipcode_to_citystate(params[:user]["zip_code"])
+  user.city = zipdata[:city]
+  user.state = zipdata[:state]
   user.password = params[:password]
   if user.save
-    session['user'] = user.id
+    session[:user_id] = user.id
     redirect "/users/#{user.id}"
   else
     @errors = user.errors.full_messages

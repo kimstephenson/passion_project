@@ -1,0 +1,41 @@
+#logout-form {
+  margin-top: 7px;
+}
+
+#logout {
+  text-decoration: none;
+}
+
+#logout:focus {
+  outline: 0;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+#bandwagon-header {
+  font-family: "Bungee Shade";
+}
+
+.bg {
+  background: url('../bandwagon-header.jpg') no-repeat center center;
+  position: fixed;
+  width: 100%;
+  height: 600px; /*same height as jumbotron */
+  top:0;
+  left:0;
+  z-index: -1;
+}
+
+.jumbotron {
+  height: 600px;
+  color: white;
+  text-shadow: #444 0 1px 1px;
+  background:transparent;
+}
+
+footer {
+  margin-top: 10px;
+}
+
