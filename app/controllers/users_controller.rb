@@ -1,13 +1,20 @@
 get '/users' do
-  data = JSON.parse(open("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/radius.json/#{current_user.zip_code}/#{params[:distance]}/mile").read)
+  data = zipcodes_in_range(current_user.zip_code)
   zip_code_info = data["zip_codes"]
-  users_in_range = []
+  @users = []
+  @distances = {}
   zip_code_info.each do |hash|
-    users_in_range += User.where(zip_code: hash["zip_code"])
+    @users += User.where(zip_code: hash["zip_code"])
+    @distances[hash["zip_code"]] = hash["distance"]
   end
-  p users_in_range
-  #display how far away user is?
-  #get instrument & genre params
+  if params[:instrument] != ""
+    @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument]) }
+  end
+  if params[:genre] != ""
+    @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
+  end
+  p "*" *90
+  p @users
   erb :'/users/index'
 end
 
