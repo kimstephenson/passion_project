@@ -1,7 +1,21 @@
 <h2><%= @user.first_name %> <%= @user.last_name%></h2>
 <h3><%= @user.city %>, <%= @user.state %></h3>
+<h3>Instruments</h3>
+  <ul>
+  <% @user.instruments.each do |inst| %>
+    <li><%= inst.name %></li>
+  <% end %>
+</ul>
+<h3>Genres</h3>
+  <ul>
+  <% @user.genres.each do |genre| %>
+    <li><%= genre.name %></li>
+  <% end %>
+</ul>
 
 <form action='/users' method='get'>
   Search for musicians within <input type='text' name='distance'> miles of me
+  <input type='text' name='instrument' placeholder='Instrument'>
+  <input type='text' name='genre' placeholder='Genre'>
   <input type='submit'>
 </form>

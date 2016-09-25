@@ -7,7 +7,14 @@ get '/users' do
     @users += User.where(zip_code: hash["zip_code"])
     @distances[hash["zip_code"]] = hash["distance"]
   end
-  #get instrument & genre params
+  if params[:instrument] != ""
+    @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument]) }
+  end
+  if params[:genre] != ""
+    @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
+  end
+  p "*" *90
+  p @users
   erb :'/users/index'
 end
 
