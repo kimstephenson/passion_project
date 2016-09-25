@@ -21,6 +21,9 @@ post '/users' do
     return erb :'/users/new'
   end
   user = User.new(params[:user])
+  zipdata = zipcode_to_citystate(params[:user]["zip_code"])
+  user.city = zipdata[:city]
+  user.state = zipdata[:state]
   user.password = params[:password]
   if user.save
     session[:user_id] = user.id
