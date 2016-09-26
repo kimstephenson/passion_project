@@ -9,7 +9,6 @@ $(document).ready(function() {
     parallax();
   });
 
-
   $("#searchform").on("submit", function(event) {
     searchForm = $(this);
     formData = $(this).serialize();
