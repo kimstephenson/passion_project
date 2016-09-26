@@ -25,13 +25,12 @@ get '/users/new' do
 end
 
 post '/users' do
-  if params[:password] != params[:confirm_pw]
+  if params[:user][:password] != params[:confirm_pw]
     @errors = ["Passwords must match"]
     return erb :'/users/new'
   end
   user = User.new(params[:user])
   user.city_state
-  user.password = params[:password]
   if user.save
     session[:user_id] = user.id
     redirect "/users/#{user.id}"
