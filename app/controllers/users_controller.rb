@@ -8,10 +8,10 @@ get '/users' do
     @distances[hash["zip_code"]] = hash["distance"]
   end
   if params[:instrument] != ""
-    @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument]) }
+    @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument].downcase) }
   end
   if params[:genre] != ""
-    @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
+    @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre].downcase) }
   end
   if request.xhr?
     erb(:'/users/index', layout: false, locals: {users: @user, distances: @distances})
@@ -47,13 +47,27 @@ get '/users/:id' do
 end
 
 get '/users/:id/edit' do
-  @user = current_user
   erb :'/users/edit'
 end
 
 put '/users/:id' do
   #edit your profile
   #redirect
+end
+
+get '/users/:id/instruments/edit' do
+  erb :'users/_instruments_edit'
+end
+
+put '/users/:id/instruments/edit' do
+  #update instruments
+end
+
+get '/users/:id/genres/edit' do
+  erb :'users/_genres_edit'
+end
+
+put '/users/:id/instruments/edit' do
 end
 
 delete '/users/:id' do
