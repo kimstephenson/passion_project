@@ -47,7 +47,8 @@ get '/users/:id' do
 end
 
 get '/users/:id/edit' do
-  #form to edit your profile when logged in
+  @user = current_user
+  erb :'/users/edit'
 end
 
 put '/users/:id' do

@@ -1,0 +1,11 @@
+<div class ='fixed-nav-pad container'>
+  <form action='/users/<%= current_user.id %>' method='post'>
+    <input type="hidden" name="_method" value="put">
+    First Name:<input type="text" name="user[first_name]" value="<%= current_user.first_name %>">
+    Last Name:<input type="text" name="user[last_name]" value="<%= current_user.last_name %>">
+    Email:<input type="text" name="user[email]" value="<%= current_user.email %>">
+    Zip Code:<input type="text" name="user[zip_code]" value="<%= current_user.zip_code %>"><br>
+    About Me:<textarea rows='10' cols='50' name="user[about_me]"></textarea>
+    <input type='submit' value='Edit'>
+  </form>
+</div>

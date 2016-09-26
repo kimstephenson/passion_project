@@ -15,5 +15,11 @@
 </ul>
 </div>
 
+<% if @user == current_user %>
+  <div class="container">
+    <a href="/users/<%= current_user.id %>/edit">Edit My Profile</a>
+  </div>
+<% end %>
+
 
 
