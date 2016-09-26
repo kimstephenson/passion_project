@@ -13,9 +13,11 @@ get '/users' do
   if params[:genre] != ""
     @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
   end
-  p "*" *90
-  p @users
-  erb :'/users/index'
+  if request.xhr?
+    erb(:'/users/index', layout: false, locals: {users: @user, distances: @distances})
+  else
+    erb :'/users/index'
+  end
 end
 
 get '/users/new' do

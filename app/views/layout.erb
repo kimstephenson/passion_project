@@ -26,6 +26,7 @@
       <% end %>
       <% if current_user %>
         <li><a href="/users/<%= current_user.id %>"><span class="glyphicon glyphicon-cd"></span> Hi, <%= current_user.first_name %></a></li>
+        <li><a href="/search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
         <li><form id='logout-form' action='/sessions' method='post'>
           <input type='hidden' name='_method' value='delete'>
           <input id="logout" class="btn btn-link" type='submit' value='Log Out'>
