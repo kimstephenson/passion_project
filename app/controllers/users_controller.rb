@@ -56,7 +56,7 @@ put '/users/:id' do
 end
 
 get '/users/:id/instruments/edit' do
-  erb :'users/_instruments_edit'
+  erb :'users/_instruments_genres_edit', locals: {thing: Instrument}
 end
 
 put '/users/:id/instruments/edit' do
@@ -64,7 +64,7 @@ put '/users/:id/instruments/edit' do
 end
 
 get '/users/:id/genres/edit' do
-  erb :'users/_genres_edit'
+  erb :'users/_instruments_genres_edit', locals: {thing: Genre}
 end
 
 put '/users/:id/instruments/edit' do
