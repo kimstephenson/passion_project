@@ -1,8 +1,12 @@
-<ul>
-  <% @users.each do |user| %>
-    <% unless user == current_user %>
-      <li><a href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %></a></li>
-      <p><%= @distances[user.zip_code] %> miles away</p>
+<div class="container">
+  <% if @users %>
+  <ul>
+    <% @users.each do |user| %>
+      <% unless user == current_user %>
+        <li><a href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %></a></li>
+        <p><%= @distances[user.zip_code] %> miles away</p>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
+</div>

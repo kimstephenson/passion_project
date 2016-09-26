@@ -13,9 +13,11 @@ get '/users' do
   if params[:genre] != ""
     @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
   end
-  p "*" *90
-  p @users
-  erb :'/users/index'
+  if request.xhr?
+    erb(:'/users/index', layout: false, locals: {users: @user, distances: @distances})
+  else
+    erb :'/users/index'
+  end
 end
 
 get '/users/new' do
@@ -28,9 +30,7 @@ post '/users' do
     return erb :'/users/new'
   end
   user = User.new(params[:user])
-  zipdata = zipcode_to_citystate(params[:user]["zip_code"])
-  user.city = zipdata[:city]
-  user.state = zipdata[:state]
+  user.city_state
   user.password = params[:password]
   if user.save
     session[:user_id] = user.id
