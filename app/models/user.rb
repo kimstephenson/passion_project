@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def city_state
+    data = JSON.parse(open("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/info.json/#{self.zip_code}/degrees").read)
+    zipdata = {city: data["city"], state: data["state"]}
+    self.city = zipdata[:city]
+    self.state = zipdata[:state]
+  end
+
   private
   def email_format
     unless email.match /\w+@\w+.\w+/
