@@ -20,8 +20,10 @@ $(document).ready(function() {
       data: formData
     });
     request.done(function(response) {
+      searchForm.siblings("#users-list").remove();
       searchForm.after(response);
       searchForm.trigger("reset");
+      searchForm.children("input:first").focus();
     });
   });
 });
