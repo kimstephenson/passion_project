@@ -1,0 +1,13 @@
+<div class='fixed-nav-pad container'>
+  <form action='/users/<%= current_user.id %>/instruments/edit' method='post'>
+    <input type="hidden" name="_method" value="put">
+    <% Instrument.all.each do |i| %>
+      <% if current_user.instruments.include? i %>
+        <label><input type="checkbox" id="<%= i.name %>" value="<%= i.name %>" checked="checked"> <%= i.name.capitalize %></label><br>
+      <% else %>
+        <label><input type="checkbox" id="<%= i.name %>" value="<%= i.name %>"> <%= i.name.capitalize %></label><br>
+      <% end %>
+    <% end %>
+    <input type='submit' value='Update'>
+  </form>
+</div>
