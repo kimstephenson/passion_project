@@ -24,5 +24,8 @@ $(document).ready(function() {
       searchForm.trigger("reset");
       searchForm.children("input:first").focus();
     });
+    request.fail(function() {
+      alert("Please enter a valid distance");
+    })
   });
 });
