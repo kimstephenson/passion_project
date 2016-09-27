@@ -7,11 +7,11 @@ get '/users' do
     @users += User.where(zip_code: hash["zip_code"])
     @distances[hash["zip_code"]] = hash["distance"]
   end
-  if params[:instrument] != ""
-    @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument].downcase) }
+  if params[:instrument] != "all instruments"
+    @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument]) }
   end
-  if params[:genre] != ""
-    @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre].downcase) }
+  if params[:genre] != "all genres"
+    @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
   end
   if request.xhr?
     erb(:'/users/index', layout: false, locals: {users: @user, distances: @distances})

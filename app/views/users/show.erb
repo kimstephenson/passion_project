@@ -23,5 +23,11 @@
   </div>
 <% end %>
 
+<% if current_user && @user != current_user %>
+  <div class='container'>
+    <a href="">Contact <%= @user.first_name %></a>
+  </div>
+<% end %>
+
 
 

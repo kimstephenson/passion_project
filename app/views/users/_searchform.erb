@@ -1,8 +1,20 @@
 <div class="fixed-nav-pad container">
 <form id="searchform" action='/users' method='get'>
   Search for musicians within <input type='text' name='distance'> miles of me
-  <input type='text' name='instrument' placeholder='Instrument'>
-  <input type='text' name='genre' placeholder='Genre'>
+  <select name='instrument'>
+    <option value="all instruments">all instruments</option>
+    <% Instrument.all.each do |i| %>
+      <option value="<%= i.name %>"><%= i.name %></option>
+    <% end %>
+  </select>
+  <select name='genre'>
+    <option value="all genres">all genres</option>
+    <% Genre.all.each do |g| %>
+      <option value="<%= g.name %>"><%= g.name %></option>
+    <% end %>
+  </select>
+  <!-- <input type='text' name='instrument' placeholder='Instrument'>
+  <input type='text' name='genre' placeholder='Genre'> -->
   <input type='submit'>
 </form>
 </div>
