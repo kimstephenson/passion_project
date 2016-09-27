@@ -25,13 +25,12 @@ get '/users/new' do
 end
 
 post '/users' do
-  if params[:password] != params[:confirm_pw]
+  if params[:user][:password] != params[:confirm_pw]
     @errors = ["Passwords must match"]
     return erb :'/users/new'
   end
   user = User.new(params[:user])
   user.city_state
-  user.password = params[:password]
   if user.save
     session[:user_id] = user.id
     redirect "/users/#{user.id}"
@@ -51,8 +50,10 @@ get '/users/:id/edit' do
 end
 
 put '/users/:id' do
-  #edit your profile
-  #redirect
+  current_user.update(params[:user])
+  current_user.city_state
+  current_user.save
+  redirect "/users/#{current_user.id}"
 end
 
 get '/users/:id/instruments/edit' do
@@ -60,14 +61,21 @@ get '/users/:id/instruments/edit' do
 end
 
 put '/users/:id/instruments/edit' do
-  #update instruments
+  instruments = []
+  params[:instruments].each_key { |k| instruments << Instrument.find_by(name: k) }
+  current_user.instruments = instruments
+  redirect "/users/#{current_user.id}"
 end
 
 get '/users/:id/genres/edit' do
   erb :'users/_genres_edit'
 end
 
-put '/users/:id/instruments/edit' do
+put '/users/:id/genres/edit' do
+  genres = []
+  params[:genres].each_key { |k| genres << Genre.find_by(name: k) }
+  current_user.genres = genres
+  redirect "/users/#{current_user.id}"
 end
 
 delete '/users/:id' do

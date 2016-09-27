@@ -3,9 +3,9 @@
     <input type="hidden" name="_method" value="put">
     <% Genre.all.each do |g| %>
       <% if current_user.genres.include? g %>
-        <label><input type="checkbox" id="<%= g.name %>" value="<%= g.name %>" checked="checked"> <%= g.name.capitalize %></label><br>
+        <label><input type="checkbox" name="genres[<%= g.name %>]" value="<%= g.name %>" checked="checked"> <%= g.name.capitalize %></label><br>
       <% else %>
-        <label><input type="checkbox" id="<%= g.name %>" value="<%= g.name %>"> <%= g.name.capitalize %></label><br>
+        <label><input type="checkbox" name="genres[<%= g.name %>]" value="<%= g.name %>"> <%= g.name.capitalize %></label><br>
       <% end %>
     <% end %>
     <input type='submit' value='Update'>
