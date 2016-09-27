@@ -3,5 +3,5 @@ get '/' do
 end
 
 get '/search' do
-  erb :'/users/_searchform'
+  erb :search
 end

@@ -4,16 +4,12 @@
 <h3>About Me</h3>
 <p><%= @user.about_me %></p>
 <h3>Instruments</h3>
-  <ul>
-  <% @user.instruments.each do |inst| %>
-    <li><%= inst.name.capitalize %></li>
-  <% end %>
-</ul>
+  <ul class="inst-list">
+    <%= erb :'users/_genres_inst_list_partial', layout: false, locals: { things: @user.instruments } %>
+  </ul>
 <h3>Genres</h3>
-  <ul>
-  <% @user.genres.each do |genre| %>
-    <li><%= genre.name.capitalize %></li>
-  <% end %>
+  <ul class="genre-list">
+    <%= erb :'users/_genres_inst_list_partial', layout: false, locals: { things: @user.genres } %>
 </ul>
 </div>
 

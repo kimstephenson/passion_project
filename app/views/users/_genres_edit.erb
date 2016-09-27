@@ -1,5 +1,5 @@
-<div class='checkbox-form'>
-  <form action='/users/<%= current_user.id %>/genres/edit' method='post'>
+<div class='checkbox-form-div'>
+  <form class="checkbox-form" action='/users/<%= current_user.id %>/genres/edit' method='post'>
     <input type="hidden" name="_method" value="put">
     <% Genre.all.each do |g| %>
       <% if current_user.genres.include? g %>

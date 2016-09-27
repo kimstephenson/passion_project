@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   loadSearchformData();
   showCheckboxForms();
-  // submitCheckboxForms();
+  submitCheckboxForms();
 });
 
 var loadSearchformData = function() {
@@ -32,7 +32,7 @@ var loadSearchformData = function() {
     });
     request.fail(function() {
       alert("Please enter a valid distance");
-    })
+    });
   });
 }
 
@@ -47,18 +47,38 @@ var showCheckboxForms = function() {
       type: "GET"
     });
     request.done(function(response) {
-      editLinksDiv.children(".checkbox-form").remove();
+      editLinksDiv.children(".checkbox-form-div").remove();
       editLinksDiv.children("a:last").after(response);
     });
     request.fail(function() {
       console.log("Something went wrong...")
-    })
-  })
+    });
+  });
 }
 
-// var submitCheckboxForms = function() {
-//   $("#edit-links").on("submit", ".checkbox-form", function(event) {
-//     event.preventDefault();
-//     console.log("inside listener");
-//   });
-// }
+var submitCheckboxForms = function() {
+  $("#edit-links").on("submit", ".checkbox-form", function(event) {
+    event.preventDefault();
+    var form = $(this);
+    var url = form.attr("action");
+    var formData = form.serialize();
+    var request = $.ajax({
+      url: url,
+      type: "PUT",
+      data: formData
+    });
+    request.done(function(response) {
+      form.parent(".checkbox-form-div").remove();
+      if(url.match(/instruments/)) {
+        $(".inst-list").empty();
+        $(".inst-list").append(response);
+      } else {
+        $(".genre-list").empty();
+        $(".genre-list").append(response);
+      }
+    });
+    request.fail(function() {
+      console.log("Something went wrong...")
+    });
+  });
+}

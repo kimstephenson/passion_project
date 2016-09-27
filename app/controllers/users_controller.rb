@@ -65,11 +65,14 @@ get '/users/:id/instruments/edit' do
 end
 
 put '/users/:id/instruments/edit' do
-  puts "*" *90
   instruments = []
   params[:instruments].each_key { |k| instruments << Instrument.find_by(name: k) }
   current_user.instruments = instruments
-  redirect "/users/#{current_user.id}"
+  if request.xhr?
+    erb :'/users/_genres_inst_list_partial', layout: false, locals: { things: current_user.instruments }
+  else
+    redirect "/users/#{current_user.id}"
+  end
 end
 
 get '/users/:id/genres/edit' do
@@ -84,7 +87,11 @@ put '/users/:id/genres/edit' do
   genres = []
   params[:genres].each_key { |k| genres << Genre.find_by(name: k) }
   current_user.genres = genres
-  redirect "/users/#{current_user.id}"
+  if request.xhr?
+    erb :'/users/_genres_inst_list_partial', layout: false, locals: { things: current_user.genres }
+  else
+    redirect "/users/#{current_user.id}"
+  end
 end
 
 delete '/users/:id' do
