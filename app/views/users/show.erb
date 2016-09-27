@@ -1,6 +1,8 @@
 <div class='fixed-nav-pad container'>
 <h2><%= @user.first_name %> <%= @user.last_name%></h2>
 <h3><%= @user.city %>, <%= @user.state %></h3>
+<h3>About Me</h3>
+<p><%= @user.about_me %></p>
 <h3>Instruments</h3>
   <ul>
   <% @user.instruments.each do |inst| %>

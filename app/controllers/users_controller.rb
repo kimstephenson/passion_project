@@ -65,6 +65,7 @@ get '/users/:id/instruments/edit' do
 end
 
 put '/users/:id/instruments/edit' do
+  puts "*" *90
   instruments = []
   params[:instruments].each_key { |k| instruments << Instrument.find_by(name: k) }
   current_user.instruments = instruments

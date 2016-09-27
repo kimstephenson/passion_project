@@ -11,6 +11,7 @@ $(document).ready(function() {
 
   loadSearchformData();
   showCheckboxForms();
+  // submitCheckboxForms();
 });
 
 var loadSearchformData = function() {
@@ -36,7 +37,7 @@ var loadSearchformData = function() {
 }
 
 var showCheckboxForms = function() {
-  $(".checkbox-link").on("click", function(event) {
+  $("#edit-links").on("click", ".checkbox-link", function(event) {
     event.preventDefault();
     var link = $(this)
     var editLinksDiv = link.parents("#edit-links")
@@ -46,11 +47,18 @@ var showCheckboxForms = function() {
       type: "GET"
     });
     request.done(function(response) {
-      link.hide();
-      editLinksDiv.after(response);
+      editLinksDiv.children(".checkbox-form").remove();
+      editLinksDiv.children("a:last").after(response);
     });
     request.fail(function() {
       console.log("Something went wrong...")
     })
   })
 }
+
+// var submitCheckboxForms = function() {
+//   $("#edit-links").on("submit", ".checkbox-form", function(event) {
+//     event.preventDefault();
+//     console.log("inside listener");
+//   });
+// }

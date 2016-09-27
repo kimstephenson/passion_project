@@ -1,4 +1,4 @@
-<div class='fixed-nav-pad container'>
+<div class='checkbox-form'>
   <form action='/users/<%= current_user.id %>/instruments/edit' method='post'>
     <input type="hidden" name="_method" value="put">
     <% Instrument.all.each do |i| %>
