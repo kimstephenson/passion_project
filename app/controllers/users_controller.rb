@@ -51,7 +51,7 @@ end
 
 put '/users/:id' do
   #edit your profile
-  #redirect
+  redirect "/users/#{current_user.id}"
 end
 
 get '/users/:id/instruments/edit' do
@@ -59,14 +59,19 @@ get '/users/:id/instruments/edit' do
 end
 
 put '/users/:id/instruments/edit' do
-  #update instruments
+  puts "*" *90
+  puts params[:instruments]
+  redirect "/users/#{current_user.id}"
 end
 
 get '/users/:id/genres/edit' do
   erb :'users/_genres_edit'
 end
 
-put '/users/:id/instruments/edit' do
+put '/users/:id/genres/edit' do
+  puts "*" *90
+  puts params[:genres]
+  redirect "/users/#{current_user.id}"
 end
 
 delete '/users/:id' do
