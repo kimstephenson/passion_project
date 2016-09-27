@@ -2,7 +2,7 @@ require 'Faker'
 
 User.destroy_all
 
-instruments = ["all", "piano", "bass", "drums", "guitar", "vocals", "saxophone", "trumpet", "trombone", "violin", "cello", "keyboard", "banjo"].sort
+instruments = ["piano", "bass", "drums", "guitar", "vocals", "saxophone", "trumpet", "trombone", "violin", "cello", "keyboard", "banjo"].sort
 genres = ["rock", "pop", "r&b", "hip-hop", "jazz", "funk", "folk", "country", "punk", "metal", "classical", "latin"].sort
 
 instruments.each do |i|
