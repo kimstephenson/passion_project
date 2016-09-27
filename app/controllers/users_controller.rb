@@ -57,7 +57,11 @@ put '/users/:id' do
 end
 
 get '/users/:id/instruments/edit' do
-  erb :'users/_instruments_edit'
+  if request.xhr?
+    erb :'users/_instruments_edit', layout: false
+  else
+    erb :'users/_instruments_edit'
+  end
 end
 
 put '/users/:id/instruments/edit' do
@@ -68,7 +72,11 @@ put '/users/:id/instruments/edit' do
 end
 
 get '/users/:id/genres/edit' do
-  erb :'users/_genres_edit'
+  if request.xhr?
+    erb :'users/_genres_edit', layout: false
+  else
+    erb :'users/_genres_edit'
+  end
 end
 
 put '/users/:id/genres/edit' do

@@ -16,10 +16,10 @@
 </div>
 
 <% if @user == current_user %>
-  <div class="container">
+  <div id="edit-links" class="container">
     <a href="/users/<%= current_user.id %>/edit">Update Personal Info</a>
-    <a href="/users/<%= current_user.id %>/instruments/edit">Edit Instruments</a>
-    <a href="/users/<%= current_user.id %>/genres/edit">Edit Genres</a>
+    <a class="checkbox-link" href="/users/<%= current_user.id %>/instruments/edit">Edit Instruments</a>
+    <a class="checkbox-link" href="/users/<%= current_user.id %>/genres/edit">Edit Genres</a>
   </div>
 <% end %>
 
