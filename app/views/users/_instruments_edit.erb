@@ -3,9 +3,9 @@
     <input type="hidden" name="_method" value="put">
     <% Instrument.all.each do |i| %>
       <% if current_user.instruments.include? i %>
-        <label><input type="checkbox" name="instruments[<%= i.name %>]" value="<%= i.name %>" checked="checked"> <%= i.name.capitalize %></label><br>
+        <label class="checkbox-inline"><input type="checkbox" name="instruments[<%= i.name %>]" value="<%= i.name %>" checked="checked"> <%= i.name.capitalize %></label><br>
       <% else %>
-        <label><input type="checkbox" name="instruments[<%= i.name %>]" value="<%= i.name %>"> <%= i.name.capitalize %></label><br>
+        <label class="checkbox-inline"><input type="checkbox" name="instruments[<%= i.name %>]" value="<%= i.name %>"> <%= i.name.capitalize %></label><br>
       <% end %>
     <% end %>
     <input type='submit' value='Update'>

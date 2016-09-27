@@ -1,25 +1,29 @@
 <div class='fixed-nav-pad container'>
-<h2><%= @user.first_name %> <%= @user.last_name%></h2>
-<h3><%= @user.city %>, <%= @user.state %></h3>
-<h3>About Me</h3>
-<p><%= @user.about_me %></p>
-<h3>Instruments</h3>
-  <ul class="inst-list">
-    <%= erb :'users/_genres_inst_list_partial', layout: false, locals: { things: @user.instruments } %>
-  </ul>
-<h3>Genres</h3>
-  <ul class="genre-list">
-    <%= erb :'users/_genres_inst_list_partial', layout: false, locals: { things: @user.genres } %>
-</ul>
-</div>
+  <div class="row">
+    <div class="col-xs-8">
+      <h2><%= @user.first_name %> <%= @user.last_name%></h2>
+      <h3><%= @user.city %>, <%= @user.state %></h3>
+      <h3>About Me</h3>
+      <p><%= @user.about_me %></p>
+      <h3>Instruments</h3>
+        <ul class="inst-list">
+          <%= erb :'users/_genres_inst_list_partial', layout: false, locals: { things: @user.instruments } %>
+        </ul>
+      <h3>Genres</h3>
+        <ul class="genre-list">
+          <%= erb :'users/_genres_inst_list_partial', layout: false, locals: { things: @user.genres } %>
+      </ul>
+    </div>
 
-<% if @user == current_user %>
-  <div id="edit-links" class="container">
-    <a href="/users/<%= current_user.id %>/edit">Update Personal Info</a>
-    <a class="checkbox-link" href="/users/<%= current_user.id %>/instruments/edit">Edit Instruments</a>
-    <a class="checkbox-link" href="/users/<%= current_user.id %>/genres/edit">Edit Genres</a>
+    <% if @user == current_user %>
+      <div class="col-xs-4" id="edit-links" class="container">
+        <a href="/users/<%= current_user.id %>/edit">Update Personal Info</a><br>
+        <a class="checkbox-link" href="/users/<%= current_user.id %>/instruments/edit">Edit Instruments</a><br>
+        <a class="checkbox-link" href="/users/<%= current_user.id %>/genres/edit">Edit Genres</a>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 <% if current_user && @user != current_user %>
   <div class='container'>
