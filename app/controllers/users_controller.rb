@@ -59,8 +59,9 @@ get '/users/:id/instruments/edit' do
 end
 
 put '/users/:id/instruments/edit' do
-  puts "*" *90
-  puts params[:instruments]
+  instruments = []
+  params[:instruments].each_key { |k| instruments << Instrument.find_by(name: k) }
+  current_user.instruments = instruments
   redirect "/users/#{current_user.id}"
 end
 
@@ -69,8 +70,9 @@ get '/users/:id/genres/edit' do
 end
 
 put '/users/:id/genres/edit' do
-  puts "*" *90
-  puts params[:genres]
+  genres = []
+  params[:genres].each_key { |k| genres << Genre.find_by(name: k) }
+  current_user.genres = genres
   redirect "/users/#{current_user.id}"
 end
 
