@@ -50,7 +50,9 @@ get '/users/:id/edit' do
 end
 
 put '/users/:id' do
-  #edit your profile
+  current_user.update(params[:user])
+  current_user.city_state
+  current_user.save
   redirect "/users/#{current_user.id}"
 end
 
