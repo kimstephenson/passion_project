@@ -1,20 +1,6 @@
 require 'pony'
 
 get '/users' do
-  # data = zipcodes_in_range(current_user.zip_code)
-  # zip_code_info = data["zip_codes"]
-  # @users = []
-  # @distances = {}
-  # zip_code_info.each do |hash|
-  #   @users += User.where(zip_code: hash["zip_code"])
-  #   @distances[hash["zip_code"]] = hash["distance"]
-  # end
-  # if params[:instrument] != "all instruments"
-  #   @users = @users.select { |user| user.instruments.include? Instrument.find_by(name: params[:instrument]) }
-  # end
-  # if params[:genre] != "all genres"
-  #   @users = @users.select { |user| user.genres.include? Genre.find_by(name: params[:genre]) }
-  # end
   @users_distances = search_for_users
   if request.xhr?
     erb(:'/users/index', layout: false)
@@ -107,4 +93,11 @@ get '/users/:id/contact' do
     #display email form on user's page
   #else
   erb :'/users/_contact'
+end
+
+post '/users/:id/contact' do
+  @user = User.find(params[:id])
+  Pony.mail(to: @user.email, from: current_user.email, subject: params[:subject], body: params[:body])
+  @message_sent = true
+  erb :'users/_contact'
 end
