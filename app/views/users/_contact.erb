@@ -1,6 +1,5 @@
-<div class='container-fluid'>
-  <h1>Send an Email to <%= @user.first_name %></h1>
-  <form action="/users/<%= @user.id %>/contact" method="post">
+<div>
+  <form id="email-form" action="/users/<%= @user.id %>/contact" method="post">
     Subject: <input type="text" name="subject"><br>
     Body: <textarea rows="10" cols="50" name="body"></textarea>
     <input type="submit" >

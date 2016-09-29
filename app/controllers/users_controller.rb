@@ -89,15 +89,20 @@ end
 
 get '/users/:id/contact' do
   @user = User.find(params[:id])
-  #if request.xhr?
-    #display email form on user's page
-  #else
-  erb :'/users/_contact'
+  if request.xhr?
+    erb :'users/_contact', layout: false
+  else
+    erb :'/users/_contact'
+  end
 end
 
 post '/users/:id/contact' do
   @user = User.find(params[:id])
   Pony.mail(to: @user.email, from: current_user.email, subject: params[:subject], body: params[:body])
-  @message_sent = true
-  erb :'users/_contact'
+  if request.xhr?
+    "<p>Your message was sent.</p>"
+  else
+    @message_sent = true
+    erb :'users/_contact'
+  end
 end
