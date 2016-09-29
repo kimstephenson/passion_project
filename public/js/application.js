@@ -12,6 +12,8 @@ $(document).ready(function() {
   loadSearchformData();
   showCheckboxForms();
   submitCheckboxForms();
+  showEmailForm();
+  submitEmailForm();
 });
 
 var loadSearchformData = function() {
@@ -78,7 +80,48 @@ var submitCheckboxForms = function() {
       }
     });
     request.fail(function() {
-      console.log("Something went wrong...")
+      console.log("Something went wrong...");
+    });
+  });
+}
+
+var showEmailForm = function() {
+  $("#contact-link").on("click", function(event) {
+    event.preventDefault();
+    var link = $(this);
+    var url = link.attr("href");
+    var request = $.ajax({
+      url: url,
+      type: "GET"
+    });
+    request.done(function(response) {
+      link.before(response);
+      link.remove();
+    });
+    request.fail(function() {
+      console.log("Something went wrong...");
+    });
+  });
+}
+
+var submitEmailForm = function() {
+  $("#contact").on("submit", "#email-form", function(event) {
+    event.preventDefault();
+    var emailForm = $(this);
+    var url = emailForm.attr("action");
+    var formData = emailForm.serialize();
+    var request = $.ajax({
+      url: url,
+      type: "POST",
+      data: formData
+    });
+    request.done(function(response) {
+      console.log(response)
+      $("#contact").append(response);
+      emailForm.remove();
+    });
+    request.fail(function() {
+      console.log("Something went wrong...");
     });
   });
 }

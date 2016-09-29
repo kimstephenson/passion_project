@@ -1,0 +1,11 @@
+<div>
+  <form id="email-form" action="/users/<%= @user.id %>/contact" method="post">
+    Subject: <input type="text" name="subject"><br>
+    Body: <textarea rows="10" cols="50" name="body"></textarea>
+    <input type="submit" >
+  </form>
+</div>
+
+<% if @message_sent %>
+  <p>Your message was sent.</p>
+<% end %>
