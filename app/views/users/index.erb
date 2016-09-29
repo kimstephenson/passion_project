@@ -1,10 +1,10 @@
-<div id="users-list" class="fixed-nav-pad container">
-  <% if @users %>
+<div id="users-list" class="container-fluid">
+  <% if @users_distances %>
   <ul>
-    <% @users.each do |user| %>
+    <% @users_distances.keys.each do |user| %>
       <% unless user == current_user %>
         <li><a href="/users/<%= user.id %>"" target="blank"><%= user.first_name %> <%= user.last_name %></a></li>
-        <p><%= @distances[user.zip_code].round(2) %> miles away</p>
+        <p><%= @users_distances[user].round(2) %> miles away</p>
       <% end %>
     <% end %>
     <% end %>
