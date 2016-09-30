@@ -41,3 +41,27 @@ footer {
   margin-top: 10px;
 }
 
+#searchform {
+  padding-top: 10px;
+}
+
+#new-user {
+  width: 50%;
+}
+
+#new-user-form {
+  padding-top: 10px;
+}
+
+#contact {
+  padding: 10px;
+}
+
+#email-form {
+  padding: 10px;
+}
+
+.user-name-display {
+  font-size: 4em;
+  font-family: "Bungee Shade";
+}
