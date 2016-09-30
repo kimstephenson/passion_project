@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 
   def city_state
     response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/info.json/#{self.zip_code}/degrees")
-    data = JSON.parse(response)
+    data = JSON.parse(response.to_json)
     # data = JSON.parse(open("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/info.json/#{self.zip_code}/degrees").read)
     zipdata = {city: data["city"], state: data["state"]}
     self.city = zipdata[:city]
