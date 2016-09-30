@@ -17,6 +17,7 @@ gem 'shotgun', '~>0.9.1'
 gem 'bcrypt'
 gem 'dotenv'
 gem 'pony'
+gem 'faker'
 
 group :test do
   gem 'shoulda-matchers'
@@ -27,5 +28,4 @@ end
 
 group :test, :development do
   gem 'factory_girl'
-  gem 'faker'
 end
