@@ -1,5 +1,3 @@
-require 'Faker'
-
 User.destroy_all
 Instrument.destroy_all
 Genre.destroy_all
