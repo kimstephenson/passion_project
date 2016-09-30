@@ -18,6 +18,7 @@ gem 'bcrypt'
 gem 'dotenv'
 gem 'pony'
 gem 'faker'
+gem 'httparty'
 
 group :test do
   gem 'shoulda-matchers'

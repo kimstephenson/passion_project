@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'httparty'
 
 class User < ActiveRecord::Base
   has_many :instruments_users
@@ -26,7 +27,9 @@ class User < ActiveRecord::Base
   end
 
   def city_state
-    data = JSON.parse(open("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/info.json/#{self.zip_code}/degrees").read)
+    response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/info.json/#{self.zip_code}/degrees")
+    data = JSON.parse(response)
+    # data = JSON.parse(open("https://www.zipcodeapi.com/rest/#{ENV["ZIP_CODE_KEY"]}/info.json/#{self.zip_code}/degrees").read)
     zipdata = {city: data["city"], state: data["state"]}
     self.city = zipdata[:city]
     self.state = zipdata[:state]
