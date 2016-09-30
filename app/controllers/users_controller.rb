@@ -1,5 +1,3 @@
-require 'pony'
-
 get '/users' do
   @users_distances = search_for_users
   if request.xhr?
