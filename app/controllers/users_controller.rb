@@ -96,7 +96,7 @@ end
 
 post '/users/:id/contact' do
   @user = User.find(params[:id])
-  Pony.mail(to: @user.email, from: current_user.email, subject: params[:subject], body: params[:body])
+  # Pony.mail(to: @user.email, from: current_user.email, subject: params[:subject], body: params[:body])
   if request.xhr?
     "<p>Your message was sent.</p>"
   else
