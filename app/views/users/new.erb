@@ -1,15 +1,44 @@
-<div class="container-fluid">
+<div id="new-user" class="center-block">
 <h3>Create a free account to connect with musicians</h3>
 
-<div>
 <form id="new-user-form" action='/users' method='post'>
-  First Name:<input type='text' name='user[first_name]'>
-  Last Name:<input type='text' name='user[last_name]'>
-  Email:<input type='text' name='user[email]'>
-  Zip Code:<input type='text' name='user[zip_code]'>
-  Password:<input type='password' name='user[password]'>
-  Confirm Password:<input type='password' name='confirm_pw'>
-  <input type='submit' value='Submit'>
+  <div class="form-group row">
+    <label class="col-xs-2 col-form-label">First Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type='text' name='user[first_name]'>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-xs-2 col-form-label">Last Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type='text' name='user[last_name]'>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-xs-2 col-form-label">Email</label>
+    <div class="col-xs-10">
+      <input class="form-control" type='text' name='user[email]'>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-xs-2 col-form-label">Zip Code</label>
+    <div class="col-xs-10">
+      <input class="form-control" type='text' name='user[zip_code]'>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-xs-2 col-form-label">Password</label>
+    <div class="col-xs-10">
+      <input class="form-control" type='password' name='user[password]'>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-xs-2 col-form-label">Confirm Password</label>
+    <div class="col-xs-10">
+      <input class="form-control" type='password' name='confirm_pw'>
+    </div>
+  </div>
+  <input class="btn btn-primary form-control" type='submit' value='Submit'>
 </form>
 
 <% if @errors %>
