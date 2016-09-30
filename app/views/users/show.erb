@@ -17,15 +17,15 @@
 
     <% if @user == current_user %>
       <div class="col-xs-4" id="edit-links">
-        <a href="/users/<%= current_user.id %>/edit">Update Personal Info</a><br>
-        <a class="checkbox-link" href="/users/<%= current_user.id %>/instruments/edit">Edit Instruments</a><br>
-        <a class="checkbox-link" href="/users/<%= current_user.id %>/genres/edit">Edit Genres</a>
+        <a class="btn btn-primary" href="/users/<%= current_user.id %>/edit">Update Personal Info</a><br>
+        <a class="checkbox-link btn btn-primary" href="/users/<%= current_user.id %>/instruments/edit">Edit Instruments</a><br>
+        <a class="checkbox-link btn btn-primary" href="/users/<%= current_user.id %>/genres/edit">Edit Genres</a>
       </div>
     <% end %>
 
     <% if current_user && @user != current_user %>
       <div id="contact" class='col-xs-4 container-fluid'>
-        <a id="contact-link" href="/users/<%= @user.id %>/contact">Contact <%= @user.first_name %></a>
+        <a class="btn btn-primary" id="contact-link" href="/users/<%= @user.id %>/contact">Contact <%= @user.first_name %></a>
       </div>
     <% end %>
   </div>
