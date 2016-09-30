@@ -52,3 +52,16 @@ footer {
 #new-user-form {
   padding-top: 10px;
 }
+
+#contact {
+  padding: 10px;
+}
+
+#email-form {
+  padding: 10px;
+}
+
+.user-name-display {
+  font-size: 4em;
+  font-family: "Bungee Shade";
+}

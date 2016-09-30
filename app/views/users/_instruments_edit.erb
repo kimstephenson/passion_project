@@ -1,5 +1,5 @@
 <div class='checkbox-form-div'>
-  <form class="checkbox-form" action='/users/<%= current_user.id %>/instruments/edit' method='post'>
+  <form class="checkbox-form pull-right" action='/users/<%= current_user.id %>/instruments/edit' method='post'>
     <input type="hidden" name="_method" value="put">
     <% Instrument.all.each do |i| %>
       <% if current_user.instruments.include? i %>
